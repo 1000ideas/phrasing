@@ -78,6 +78,9 @@ var phrasing_setup = function(){
 
     $.ajax({
       type: "PUT",
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
       url: url,
       data: { new_value: content },
       success: function(e){
